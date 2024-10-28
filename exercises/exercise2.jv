@@ -1,57 +1,53 @@
-pipeline BaumPipeline {
-    BaumCSVExtractor 
-        -> BaumTextFileInterpreter 
-        -> BaumCSVInterpreter 
-        -> DeleteBaumartDeutsch
-        -> BaumTableInterpreter
-        -> BaumSQLiteLoader;
-
-    block BaumCSVExtractor oftype HttpExtractor {
+pipeline BaumDataPipeline {
+    TreeDataExtractor
+        -> BaumartEntfernen
+        -> BaumDataInterpreter
+        -> BaumDataSQLiteLoader;
+ 
+    block TreeDataExtractor oftype CSVExtractor {
         url: "https://opendata.rhein-kreis-neuss.de/api/v2/catalog/datasets/stadt-neuss-herbstpflanzung-2023/exports/csv";
+        delimiter: ";";
     }
-
-    block BaumTextFileInterpreter oftype TextFileInterpreter {}
-
-    block BaumCSVInterpreter oftype CSVInterpreter {
-        delimiter: ';';
+    
+    
+    // "baumart_deutsch" column löschen
+    block BaumartEntfernen oftype ColumnDeleter {
+        delete: [column E];   
     }
-
-    block BaumTableInterpreter oftype TableInterpreter {
+    
+    block BaumDataInterpreter oftype TableInterpreter {
         header: true;
         columns: [
             "lfd_nr" oftype integer,
             "stadtteil" oftype StadtteilVogelgesang,
             "standort" oftype text,
             "baumart_botanisch" oftype text,
-            "id" oftype GeoKoordinate,
+            "id" oftype ID,
             "baumfamilie" oftype text
         ];
     }
-
-    block DeleteBaumartDeutsch oftype ColumnDeleter {
-        delete: [column E];
-    }
-
-    block BaumSQLiteLoader oftype SQLiteLoader {
+    
+    block BaumDataSQLiteLoader oftype SQLiteLoader {
         table: "trees";
-        file: "./trees.sqlite";
+        file: "trees.sqlite";
+        dropTable: true;
     }
+    
+    
+    valuetype ID oftype text {
+        constraints: [ GeokoordinatenBedingung ];
+    }
+    
+    constraint GeokoordinatenBedingung oftype RegexConstraint {
+        regex: /\d{1,3}\.\d+, \d{1,3}\.\d+/;
+    }
+
+    valuetype StadtteilVogelgesang oftype text {
+        constraints: [ StadtteilVogelgesangBedingung ];
+    }
+    
+    constraint StadtteilVogelgesangBedingung oftype RegexConstraint {
+        regex: /^Vogelsang/;
+    }   
 }
-
-valuetype GeoKoordinate oftype text {
-    constraints: [
-        GeoKoordinateBedingung,
-    ];
-}
-
-constraint GeoKoordinateBedingung on text:
-    value matches /^\d{1,3}\.\d+,\s\d{1,3}\.\d+$/;
-
-valuetype StadtteilVogelgesang oftype text {
-    constraints: [
-        StadtteilVogelgesangBedingung,
-    ];
-}
-
-constraint StadtteilVogelgesangBedingung on text:
-    value matches /^Vogelgesang-.*/;
+ 
