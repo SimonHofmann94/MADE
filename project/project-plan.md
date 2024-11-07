@@ -47,6 +47,7 @@ WP1: Projektplanung und Datenbeschaffung
 
 1.4: Dokumentation der Datenquellen und Lizenzen.
 
+
 WP2: Datenaufbereitung
 
 2.1: Bereinigung der Daten (Entfernung fehlender oder fehlerhafter Einträge).
@@ -54,6 +55,7 @@ WP2: Datenaufbereitung
 2.2: Normalisierung oder Skalierung der Variablen zur besseren Vergleichbarkeit.
 
 2.3: Zusammenführung der Datensätze in einer einheitlichen Datenstruktur, um regionale und zeitliche Vergleiche zu ermöglichen.
+
 
 WP3: Explorative Datenanalyse (EDA)
 
@@ -63,9 +65,11 @@ WP3: Explorative Datenanalyse (EDA)
 
 3.3: Identifikation von Datenmustern und ersten Trends.
 
+
 WP4: Korrelationsanalyse
 
 4.1: Berechnung von Korrelationskoeffizienten zwischen Gesundheitsausgaben und Lebenserwartung.
+
 
 WP5: Vergleichsanalyse nach Region und Einkommensniveau
 
@@ -75,6 +79,7 @@ WP5: Vergleichsanalyse nach Region und Einkommensniveau
 
 5.3: Erstellung eines Berichts über regionale und einkommensspezifische Unterschiede.
 
+
 WP6: Visualisierung und Ergebnispräsentation
 
 6.1: Erstellung umfassender Visualisierungen zur Darstellung der Analyseergebnisse (Korrelationsmatrix, regionale Trends, Zeitreihen).
@@ -83,6 +88,7 @@ WP6: Visualisierung und Ergebnispräsentation
 
 6.3: Interpretation und Erläuterung der Implikationen der Ergebnisse für politische Maßnahmen.
 
+
 WP7: Berichterstellung und Dokumentation
 
 7.1: Erstellung eines schriftlichen Abschlussberichts mit einer detaillierten Darstellung der Methodik, Ergebnisse und Implikationen.
@@ -90,6 +96,7 @@ WP7: Berichterstellung und Dokumentation
 7.2: Dokumentation aller Arbeitsschritte und genutzten Datenquellen.
 
 7.3: Auflistung von Projektlimitationen und Vorschlägen für zukünftige Untersuchungen.
+
 
 WP8: Projektabschluss und Feedback
 
