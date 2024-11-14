@@ -73,9 +73,7 @@ WP5: Vergleichsanalyse nach Region und Einkommensniveau
 
 5.1: Vergleich der Ergebnisse zwischen Nord-, Zentral- und Südamerika.
 
-5.2: Analyse der Unterschiede zwischen Ländern mit hohem, mittlerem und niedrigem Einkommen.
-
-5.3: Erstellung eines Berichts über regionale und einkommensspezifische Unterschiede.
+5.2: Erstellung eines Berichts über regionale und einkommensspezifische Unterschiede.
 
 
 WP6: Visualisierung und Ergebnispräsentation
