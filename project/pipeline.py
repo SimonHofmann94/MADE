@@ -262,7 +262,7 @@ for name, df in dataframes.items():
 
 print(merged_data.head())
 
-output_path = "data/consolidated_health_data.csv"
+output_path = "../data/consolidated_health_data.csv"
 
 merged_data.to_csv(output_path, index=False)
 
