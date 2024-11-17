@@ -1,0 +1,86 @@
+pipeline CountryStats {
+    
+    block GetDataFromLink oftype HttpExtractor{
+        url: "https://thedocs.worldbank.org/en/doc/7d852628d96b9411d43e5d36d5dff941-0050062022/original/Graphs-Chapter-5-02082022.xlsx";
+    }
+
+    block InterpretFileAsXLSX oftype XLSXInterpreter {}
+    
+    block SelectSheet oftype SheetPicker {
+        sheetName: "Figure S5.1.2";
+    }
+
+    block RenameHeader oftype CellWriter {
+        at: range P2:S2;
+        write: [
+            "Country Code",
+            "Economy",
+            "GDP per Capita",
+            "Bond Issuance Share",
+        ];
+    }
+
+    block SelectAllImportantCells oftype CellRangeSelector {
+        select: range P2:S45;
+    }    
+
+    block CreateBondIssuanceTable oftype TableInterpreter {
+        header: true;
+        columns: [
+             "Country Code" oftype CountryCode,
+            "Bond Issuance Share" oftype BondIssuanceShare,        
+        ];
+    }
+
+    block BondIssuanceTableLoader oftype SQLiteLoader {
+        table: "bondIssuance";
+        file: "country-stats.sqlite";
+        dropTable: true;            
+    }
+
+    block CreateGDPTable oftype TableInterpreter {
+        header: true;
+        columns: [
+            "Country Code" oftype CountryCode,
+            "GDP per Capita" oftype GDPPerCapita,
+        ];
+    }
+
+    block GDPTableLoader oftype SQLiteLoader {
+        table: "gdpPerCapita";
+        file: "country-stats.sqlite";
+        dropTable: true;            
+    }
+
+    valuetype CountryCode oftype text {
+        constraints: [];
+    }
+
+    valuetype GDPPerCapita oftype decimal {
+        constraints: [Positive];
+    }
+
+    valuetype BondIssuanceShare oftype decimal {
+        constraints: [BetweenZeroAndOne];
+    }
+
+    constraint BetweenZeroAndOne on decimal:
+        value >= 0 and value <= 1;
+
+    constraint Positive on decimal:
+        value > 0;
+
+    
+    GetDataFromLink
+        ->InterpretFileAsXLSX
+        -> SelectSheet
+        -> RenameHeader
+        -> SelectAllImportantCells
+        -> CreateBondIssuanceTable
+        -> BondIssuanceTableLoader;
+
+    SelectAllImportantCells
+        -> CreateGDPTable
+        -> GDPTableLoader;
+    
+}
