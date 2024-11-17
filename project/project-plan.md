@@ -52,16 +52,14 @@ WP2: Datenaufbereitung
 
 2.1: Bereinigung der Daten (Entfernung fehlender oder fehlerhafter Einträge).
 
-2.2: Normalisierung oder Skalierung der Variablen zur besseren Vergleichbarkeit.
-
-2.3: Zusammenführung der Datensätze in einer einheitlichen Datenstruktur, um regionale und zeitliche Vergleiche zu ermöglichen.
+2.2: Zusammenführung der Datensätze in einer einheitlichen Datenstruktur, um regionale und zeitliche Vergleiche zu ermöglichen.
 
 
 WP3: Explorative Datenanalyse (EDA)
 
 3.1: Erstellung erster deskriptiver Statistiken für Gesundheitsausgaben und Lebenserwartung.
 
-3.2: Visualisierung der Variablen nach Regionen und Einkommensniveaus (z. B. Scatterplots, Zeitreihenplots).
+3.2: Visualisierung der Variablen nach Regionen und Einkommensniveaus
 
 3.3: Identifikation von Datenmustern und ersten Trends.
 
@@ -75,9 +73,7 @@ WP5: Vergleichsanalyse nach Region und Einkommensniveau
 
 5.1: Vergleich der Ergebnisse zwischen Nord-, Zentral- und Südamerika.
 
-5.2: Analyse der Unterschiede zwischen Ländern mit hohem, mittlerem und niedrigem Einkommen.
-
-5.3: Erstellung eines Berichts über regionale und einkommensspezifische Unterschiede.
+5.2: Erstellung eines Berichts über regionale und einkommensspezifische Unterschiede.
 
 
 WP6: Visualisierung und Ergebnispräsentation
@@ -97,11 +93,3 @@ WP7: Berichterstellung und Dokumentation
 
 7.3: Auflistung von Projektlimitationen und Vorschlägen für zukünftige Untersuchungen.
 
-
-WP8: Projektabschluss und Feedback
-
-8.1: Zusammenstellung des gesamten Projektmaterials (Code, Daten, Visualisierungen).
-
-8.2: Einholen von Feedback zu den Ergebnissen und der Methodik.
-
-8.3: Identifikation von Verbesserungsmöglichkeiten und Lessons Learned.
